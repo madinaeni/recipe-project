@@ -10,16 +10,14 @@ public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String description;
-
     private BigDecimal amount;
 
     @ManyToOne
     private Recipe recipe;
 
-    // defaults to eager
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "uom_id")
     private UnitOfMeasure uom;
 
     public Ingredient() {
