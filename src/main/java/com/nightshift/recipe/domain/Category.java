@@ -1,10 +1,14 @@
 package com.nightshift.recipe.domain;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Data
+@EqualsAndHashCode(exclude = {"recipes"})
 @Entity
 public class Category {
 
@@ -16,27 +20,4 @@ public class Category {
     @ManyToMany(mappedBy = "categories")
     private Set<Recipe> recipes = new HashSet<>();
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String categoryName) {
-        this.description = categoryName;
-    }
-
-    public Set<Recipe> getRecipes() {
-        return recipes;
-    }
-
-    public void setRecipes(Set<Recipe> recipies) {
-        this.recipes = recipies;
-    }
 }

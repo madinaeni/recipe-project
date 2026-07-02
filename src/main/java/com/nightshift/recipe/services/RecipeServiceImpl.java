@@ -2,16 +2,17 @@ package com.nightshift.recipe.services;
 
 import com.nightshift.recipe.domain.Recipe;
 import com.nightshift.recipe.repositories.RecipeRepository;
-import org.antlr.v4.runtime.tree.pattern.ParseTreePattern;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Slf4j
 @Service
 public class RecipeServiceImpl implements RecipeService{
 
-    private RecipeRepository recipeRepository;
+    private final RecipeRepository recipeRepository;
 
     public RecipeServiceImpl(RecipeRepository recipeRepository) {
         this.recipeRepository = recipeRepository;
@@ -19,6 +20,7 @@ public class RecipeServiceImpl implements RecipeService{
 
     @Override
     public Set<Recipe> getRecipes() {
+        log.debug("Recipe Service called : ");
         Set<Recipe> recipeSet = new HashSet<>();
         recipeRepository.findAll().iterator().forEachRemaining(recipeSet::add);
         return recipeSet;
