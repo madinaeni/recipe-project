@@ -4,6 +4,7 @@ import com.nightshift.recipe.domain.*;
 import com.nightshift.recipe.repositories.CategoryRepository;
 import com.nightshift.recipe.repositories.RecipeRepository;
 import com.nightshift.recipe.repositories.UnitOfMeasureRepository;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -32,6 +33,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
     }
 
     @Override
+    @Transactional
     public void onApplicationEvent(ContextRefreshedEvent event) {
         log.debug("Recipe Bootstrap called : ");
         recipeRepository.saveAll(getRecipes());
