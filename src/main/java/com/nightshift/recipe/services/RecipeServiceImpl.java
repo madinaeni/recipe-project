@@ -20,7 +20,7 @@ public class RecipeServiceImpl implements RecipeService{
 
     @Override
     public Set<Recipe> getRecipes() {
-        log.debug("Recipe Service called : ");
+        log.debug("Recipe Service called : getRecipes");
         Set<Recipe> recipeSet = new HashSet<>();
         recipeRepository.findAll().iterator().forEachRemaining(recipeSet::add);
         return recipeSet;
@@ -28,7 +28,7 @@ public class RecipeServiceImpl implements RecipeService{
 
     @Override
     public Recipe findById(Long id) {
-        log.debug("Recipe Service called : ");
+        log.debug("Recipe Service called : findById");
         return recipeRepository.findById(id).get();
     }
 }
